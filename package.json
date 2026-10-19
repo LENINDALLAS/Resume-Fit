@@ -1,0 +1,22 @@
+{
+  "name": "resume-fit",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontendDashboard",
+    "frontendExtension"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:dashboard": "npm run dev --workspace=frontendDashboard",
+    "dev:extension": "npm run dev --workspace=frontendExtension",
+    "build": "npm run build --workspace=shared && npm run build --workspace=backend && npm run build --workspace=frontendDashboard && npm run build --workspace=frontendExtension",
+    "test:backend": "npm run test --workspace=backend",
+    "icons": "node scripts/generateIcons.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
