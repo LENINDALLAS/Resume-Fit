@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum AnalysisStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String
+  email        String   @unique
+  passwordHash String
+
+  refreshTokens RefreshToken[]
+  analyses      Analysis[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}
+
+// JSON columns store the rich structured shapes defined in
+// shared/src/types (SkillsEvaluation, ExperienceEvaluation, ProjectsEvaluation,
+// EducationEvaluation, CertificationsEvaluation) -- not a simplified shorthand.
+model Analysis {
+  id String @id @default(uuid()) @db.Uuid
+  // Nullable: an analysis created anonymously from the extension has no
+  // owner until a user logs in/registers and claims it (see analysisService.claimAnalysis).
+  userId String? @db.Uuid
+
+  jobTitle    String?
+  companyName String?
+
+  atsScore   Int
+  atsVersion String
+
+  summary String
+
+  matchedSkills Json
+  missingSkills Json
+
+  experienceEvaluation     Json
+  educationEvaluation      Json
+  projectsEvaluation       Json
+  certificationsEvaluation Json
+
+  suggestions    Json
+  strengths      Json
+  scoreBreakdown Json
+
+  status       AnalysisStatus
+  errorMessage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@index([status])
+  @@map("analyses")
+}

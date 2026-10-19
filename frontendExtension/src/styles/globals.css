@@ -1,0 +1,157 @@
+/*
+ * Mirrors shared/src/constants/theme.ts and frontendDashboard's globals.css
+ * exactly, so the extension popup and the dashboard read as one product.
+ */
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+
+  --score-low: #dc2626;
+  --score-moderate: #d97706;
+  --score-good: #ca8a04;
+  --score-strong: #16a34a;
+  --score-excellent: #15803d;
+
+  --font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  font-size: 0.92rem;
+}
+
+.popup-content {
+  padding: 16px;
+}
+
+.card-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.centered-page {
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.field-group {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-error {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+}
+
+.file-drop-zone {
+  border: 1.5px dashed var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  background-color: var(--color-background);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.file-drop-zone:hover,
+.file-drop-zone:focus-visible,
+.file-drop-zone.dragging {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  outline: none;
+}
+
+.file-drop-zone.has-file {
+  border-style: solid;
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  cursor: default;
+}
+
+.file-drop-zone.has-error {
+  border-color: var(--color-danger);
+}
+
+.file-drop-zone.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.file-drop-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.file-drop-empty svg {
+  color: var(--color-primary);
+}
+
+.file-drop-selected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-drop-selected > svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.file-drop-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  color: var(--color-text-primary);
+}
+
+.file-drop-remove {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.file-drop-remove:hover {
+  background-color: var(--color-border);
+  color: var(--color-danger);
+}
