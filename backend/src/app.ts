@@ -10,6 +10,10 @@ import { errorMiddleware } from "./middleware/errorMiddleware.js";
 export function createApp() {
   const app = express();
 
+  // Render (and most hosts) sit behind one reverse proxy; trust its
+  // X-Forwarded-For so req.ip -- and therefore rate limiting -- sees the real client.
+  app.set("trust proxy", 1);
+
   app.use(helmet());
   app.use(requestIdMiddleware);
   app.use(
