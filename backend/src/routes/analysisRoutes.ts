@@ -6,7 +6,11 @@ import { validate } from "../middleware/validationMiddleware.js";
 import { uploadResume } from "../middleware/uploadMiddleware.js";
 import { analysisRateLimiter } from "../middleware/rateLimiter.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { analysisIdParamSchema, analysisQuerySchema, createAnalysisSchema } from "../validators/analysisValidators.js";
+import {
+  analysisIdParamSchema,
+  analysisQuerySchema,
+  createAnalysisSchema,
+} from "../validators/analysisValidators.js";
 
 export const analysisRoutes = Router();
 
