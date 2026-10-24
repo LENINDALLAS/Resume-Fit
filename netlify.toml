@@ -1,0 +1,14 @@
+# Netlify config for the dashboard. Lives at the repo root so npm installs all
+# workspaces (the dashboard imports @resume-fit/shared).
+[build]
+  command = "npm run build --workspace=frontendDashboard"
+  publish = "frontendDashboard/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback: serve index.html for every path so React Router handles routing.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
