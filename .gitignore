@@ -8,12 +8,11 @@ build/
 
 *.log
 npm-debug.log*
+temp_auto_push.bat
 
 .DS_Store
 Thumbs.db
 
-.vscode/*
-!.vscode/extensions.json
 
 coverage/
 
@@ -21,3 +20,5 @@ backend/prisma/dev.db
 backend/logs/
 
 tsconfig.tsbuildinfo
+.gitignore
+branch_structure.json
