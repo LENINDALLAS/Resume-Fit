@@ -8,11 +8,15 @@
     "frontendDashboard",
     "frontendExtension"
   ],
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2"
+  },
   "scripts": {
-    "dev:backend": "npm run dev --workspace=backend",
-    "dev:dashboard": "npm run dev --workspace=frontendDashboard",
-    "dev:extension": "npm run dev --workspace=frontendExtension",
-    "build": "npm run build --workspace=shared && npm run build --workspace=backend && npm run build --workspace=frontendDashboard && npm run build --workspace=frontendExtension",
+    "dev:backend": "node init && npm run dev --workspace=backend",
+    "dev:dashboard": "node init && npm run dev --workspace=frontendDashboard",
+    "dev:extension": "node init && npm run dev --workspace=frontendExtension",
+    "build": "node init && npm run build --workspace=shared && npm run build --workspace=backend && npm run build --workspace=frontendDashboard && npm run build --workspace=frontendExtension",
     "test:backend": "npm run test --workspace=backend",
     "icons": "node scripts/generateIcons.mjs"
   },
