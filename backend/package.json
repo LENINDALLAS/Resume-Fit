@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node api.js && tsx watch src/server.ts",
-    "build": "node api.js && tsc -p tsconfig.json",
-    "start": "node api.js && tsx src/server.ts",
+    "dev": "node init && tsx watch src/server.ts",
+    "build": "node init && tsc -p tsconfig.json",
+    "start": "node init && tsx src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "prisma:generate": "prisma generate",
